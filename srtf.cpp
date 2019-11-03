@@ -39,16 +39,16 @@ int main()
 		cout << " " << pr[i] << "\t\t" << bt[i] << "\t\t"	<< at[i] << "\t\t"<< endl; 
 	} 
 	int co=0,cct=0,min;
-	bt[n]=INT_MAX;
+	bt[n]=INT_MAX;				//in this scheduling we need to select min burst time process so to compare burst times we take a max value and to be stored in the burst time aray at the place n so that we just use the values for comarison
 while(co!=n){
-	min=n;
+	min=n;				
 	for(int i=0;i<n;i++){								//every time we need to select min burst time process to schedule to the cpu 
 		if(at[i]<=cct && bt[i]>0 && bt[i]<bt[min]){		//so here we select the min burst time process which are in the ready que
 			min=i;						//i.e the arrival times of process are less than the current time cct
 		}
 	}
-	bt[min]--;cct++;
-	if(bt[min]==0){
+	bt[min]--;cct++;						//for now we execute on 1 unit,bcoz we cant predicted when to preempt so evry second we check the processes 
+	if(bt[min]==0){						
 		co++;
 		ct[min]=cct;
 		tat[min]=ct[min]-at[min];
