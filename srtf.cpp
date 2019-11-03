@@ -16,7 +16,7 @@ int main()
 	for(int i=0;i<n;i++){																//read details
 		cout<<"enter  id of "<<i+1<<"th process : ";cin>>pr[i];cout<<"\n";
 		cout<<"enter arrival time : "<<i+1<<"th process : ";cin>>at[i];cout<<"\n";
-		cout<<"enter burst time: "<<i+1<<"th process : ";cin>>bt[i];cout<<"\n";tb[i]=bt[i];
+		cout<<"enter burst time: "<<i+1<<"th process : ";cin>>bt[i];cout<<"\n";
 	}																					//sort by ar --> prid
 		for(int i=0;i<n;i++){
 		for(int j=i+1;j<n;j++){
@@ -39,6 +39,7 @@ int main()
 		cout << " " << pr[i] << "\t\t" << bt[i] << "\t\t"	<< at[i] << "\t\t"<< endl; 
 	} 
 	int co=0,cct=0,min;
+ for(int i=0;i<n;i++){tb[i]=bt[i];}
 	bt[n]=INT_MAX;				//in this scheduling we need to select min burst time process so to compare burst times we take a max value and to be stored in the burst time aray at the place n so that we just use the values for comarison
 while(co!=n){
 	min=n;				
