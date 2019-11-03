@@ -16,7 +16,7 @@ int main()
 	for(int i=0;i<n;i++){																//read details
 		cout<<"enter  id of "<<i+1<<"th process : ";cin>>pr[i];cout<<"\n";
 		cout<<"enter arrival time : "<<i+1<<"th process : ";cin>>at[i];cout<<"\n";
-		cout<<"enter burst time: "<<i+1<<"th process : ";cin>>bt[i];cout<<"\n";tb[i]=bt[i];
+		cout<<"enter burst time: "<<i+1<<"th process : ";cin>>bt[i];cout<<"\n";
 		cout<<"enter  priority of "<<i+1<<"th process : ";cin>>prid[i];cout<<"\n";
 
 	}																					//sort by ar --> prid
@@ -25,7 +25,8 @@ int main()
 	{ 
 		cout << " " << pr[i] << "\t\t" << bt[i] << "\t\t"	<< at[i] << "\t\t"<< prid[i]<<endl; 
 	} 
-	int co=0,cct=0,max;
+	int co=0,cct=0,max;for(int i=0;i<n;i++){		tb[i]=bt[i];
+	}
 	prid[n]=INT_MIN;
 while(co!=n){
 	max=n;
