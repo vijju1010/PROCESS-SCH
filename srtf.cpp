@@ -42,9 +42,9 @@ int main()
 	bt[n]=INT_MAX;
 while(co!=n){
 	min=n;
-	for(int i=0;i<n;i++){
-		if(at[i]<=cct && bt[i]>0 && bt[i]<bt[min]){
-			min=i;
+	for(int i=0;i<n;i++){								//every time we need to select min burst time process to schedule to the cpu 
+		if(at[i]<=cct && bt[i]>0 && bt[i]<bt[min]){		//so here we select the min burst time process which are in the ready que
+			min=i;						//i.e the arrival times of process are less than the current time cct
 		}
 	}
 	bt[min]--;cct++;
