@@ -20,28 +20,13 @@ int main()
 		cout<<"enter  priority of "<<i+1<<"th process : ";cin>>prid[i];cout<<"\n";
 
 	}																					//sort by ar --> prid
-		for(int i=0;i<n;i++){
-		for(int j=i+1;j<n;j++){
-			if(at[i]>at[j]){
-				swap(&at[i],&at[j]);
-				swap(&bt[j],&bt[i]);
-				swap(&pr[i],&pr[j]);
-			}
-			else if(at[i]==at[j]){
-				if(pr[i]>pr[j]){
-				swap(&at[i],&at[j]);
-				swap(&bt[j],&bt[i]);
-				swap(&pr[i],&pr[j]);}
-			}
-		}
-	}																					//print details
-		cout << "processes " << " burst Time " << " arrival time "<< endl;
+	cout << "processes " << " burst Time " << " arrival time "<< "\t prid"<< endl;
 	for (int i = 0 ; i < n ; i++) 
 	{ 
-		cout << " " << pr[i] << "\t\t" << bt[i] << "\t\t"	<< at[i] << "\t\t"<< endl; 
+		cout << " " << pr[i] << "\t\t" << bt[i] << "\t\t"	<< at[i] << "\t\t"<< prid[i]<<endl; 
 	} 
 	int co=0,cct=0,max;
-	pr[n]=INT_MIN;
+	prid[n]=INT_MIN;
 while(co!=n){
 	max=n;
 	for(int i=0;i<n;i++){
@@ -57,14 +42,14 @@ while(co!=n){
 		wt[max]=tat[max]-tb[max];
 	}
 }
-cout << "processes " << " burst Time " << " arrival time "<< " waiting time " << "   	 	  tat          "  << " completion time\n"; 
+cout << "processes " << " burst Time " << " arrival time "<< " waiting time " << "   	 	  tat          "  << " completion time"<<"\t prid\n"; 
 	int totalwt = 0, totaltat = 0; 
 	for (int i = 0 ; i < n ; i++) 
 	{ 
 		totalwt = totalwt + wt[i]; 
 		totaltat = totaltat + tat[i]; 
 		int compltime = tat[i] + at[i]; 
-		cout << " " << pr[i] << "\t\t" << tb[i] << "\t\t"	<< at[i] << "\t\t" << wt[i] << "\t\t "<< tat[i] << "\t\t " << compltime << endl; 
+		cout << " " << pr[i] << "\t\t" << tb[i] << "\t\t"	<< at[i] << "\t\t" << wt[i] << "\t\t "<< tat[i] << "\t\t " << compltime <<"\t "<<prid[i]<< endl; 
 	} 
 	cout << "avg waiting time = "<< (float)totalwt / (float)n; 
 	cout << "\naverage turn around time = "	<< (float)totaltat / (float)n; 
