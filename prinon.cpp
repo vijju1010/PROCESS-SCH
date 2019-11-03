@@ -16,75 +16,40 @@ int main()
 	for(int i=0;i<n;i++){																//read details
 		cout<<"enter  id of "<<i+1<<"th process : ";cin>>pr[i];cout<<"\n";
 		cout<<"enter arrival time : "<<i+1<<"th process : ";cin>>at[i];cout<<"\n";
-		cout<<"enter burst time: "<<i+1<<"th process : ";cin>>bt[i];cout<<"\n";tb[i]=bt[i];
+		cout<<"enter burst time: "<<i+1<<"th process : ";cin>>bt[i];cout<<"\n";
 		cout<<"enter  priority of "<<i+1<<"th process : ";cin>>prid[i];cout<<"\n";
 
 	}																					//sort by ar --> prid
-		for(int i=0;i<n;i++){
-		for(int j=i+1;j<n;j++){
-			if(at[i]>at[j]){
-				swap(&at[i],&at[j]);
-				swap(&bt[j],&bt[i]);
-				swap(&pr[i],&pr[j]);
-			}
-			else if(at[i]==at[j]){
-				if(pr[i]>pr[j]){
-				swap(&at[i],&at[j]);
-				swap(&bt[j],&bt[i]);
-				swap(&pr[i],&pr[j]);}
-			}
-		}
-	}																					//print details
-		cout << "processes " << " burst Time " << " arrival time "<< endl;
+	cout << "processes " << " burst Time " << " arrival time "<< "\t prid"<< endl;
 	for (int i = 0 ; i < n ; i++) 
 	{ 
-		cout << " " << pr[i] << "\t\t" << bt[i] << "\t\t"	<< at[i] << "\t\t"<< endl; 
+		cout << " " << pr[i] << "\t\t" << bt[i] << "\t\t"	<< at[i] << "\t\t"<< prid[i]<<endl; 
 	} 
-
-
-	
-for(int i=0;i<n;i++){
-	int co=i;
-	if(i==0){
-	wt[0]=0;ct[0]=at[0]+bt[0];tat[0]=ct[0]-at[0];	
-	}
-	else{
-	for(int j=i;j<n;j++){
-		if(at[j]<=ct[i-1]){co++;
+	int co=0,cct=0,max;
+for(int i=0;i<n;i++){tb[i]=bt[i];
+}
+	prid[n]=INT_MIN;
+while(co!=n){
+	max=n;
+	for(int i=0;i<n;i++){
+		if(at[i]<=cct && bt[i]>0 && prid[i]>prid[max]){
+			max=i;
 		}
 	}
-	for(int j=i;j<co;j++){
-		
-		for(int k=j+1;k<co;k++){
-		if(prid[j]<prid[k]){
-			swap(&at[k],&at[j]);
-			swap(&bt[j],&bt[k]);
-			swap(&pr[j],&pr[k]);
-			swap(&prid[j],&prid[k]);
-			
-		}
-		}
-	}
-	if(ct[i-1]<at[i]){
-		ct[i]=at[i]+bt[i];
-	}
-	else{
-		ct[i]=ct[i-1]+bt[i];
-	}
-		tat[i]=ct[i]-at[i];
-		wt[i]=tat[i]-bt[i];	
-}}
-
-
-
-cout << "processes " << " burst Time " << " arrival time "<< " waiting time " << "   	 	  tat          "  << " completion time\n"; 
+	cct+=bt[max];bt[max]=0;
+	co++;
+		ct[max]=cct;
+		tat[max]=ct[max]-at[max];
+		wt[max]=tat[max]-tb[max];
+}
+cout << "processes " << " burst Time " << " arrival time "<< " waiting time " << "   	 	  tat          "  << " completion time"<<"\t prid\n"; 
 	int totalwt = 0, totaltat = 0; 
 	for (int i = 0 ; i < n ; i++) 
 	{ 
 		totalwt = totalwt + wt[i]; 
 		totaltat = totaltat + tat[i]; 
 		int compltime = tat[i] + at[i]; 
-		cout << " " << pr[i] << "\t\t" << tb[i] << "\t\t"	<< at[i] << "\t\t" << wt[i] << "\t\t "<< tat[i] << "\t\t " << compltime << endl; 
+		cout << " " << pr[i] << "\t\t" << tb[i] << "\t\t"	<< at[i] << "\t\t" << wt[i] << "\t\t "<< tat[i] << "\t\t " << compltime <<"\t "<<prid[i]<< endl; 
 	} 
 	cout << "avg waiting time = "<< (float)totalwt / (float)n; 
 	cout << "\naverage turn around time = "	<< (float)totaltat / (float)n; 
